@@ -1,0 +1,29 @@
+name: Daily EOD Report
+
+on:
+  schedule:
+    # Run at 4:00 PM IST (10:30 UTC) Monday to Friday
+    - cron: '30 10 * * 1-5'
+
+  # Allow running manually
+  workflow_dispatch:
+
+jobs:
+  send-report:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Send Daily Report
+      env:
+        EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+        EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+      run: |
+        python scripts/send_daily_report.py

@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "kite": {
+      "command": "npx",
+      "args": ["mcp-remote", "https://mcp.kite.trade/mcp"]
+    },
+    "alphavantage": {
+      "url": "https://mcp.alphavantage.co/mcp?apikey=YOUR_API_KEY"
+    }
+  }
+}
